@@ -1,0 +1,29 @@
+.main {
+  margin: 40px 0;
+
+  .titlePlusSearch {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
+    .title {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      font-size: 32px;
+      letter-spacing: 0.16em;
+      text-transform: capitalize;
+    }
+
+    .search {
+
+    }
+  }
+
+
+  .items {
+    .item {
+
+    }
+  }
+}
