@@ -1,17 +1,20 @@
 import styles from "./Item.module.scss";
 import React from "react";
 
-const Item = () => {
+const Item = (props) => {
     return (
-        <div className={styles.itemBlock}>
-            <img src="img/item1.png" alt="Sneakers"/>
-            <h4>Мужские Кроссовки Nike Blazer Mid Suede</h4>
-            <div className={styles.contentPrice}>
-                <div className={styles.priceBlock}>
-                    <p className={styles.title}>Price:</p>
-                    <p className={styles.price}>550$</p>
+        <div className={styles.main}>
+            <div className={styles.itemBlock}>
+                <img src={props.img} alt="Sneakers"/>
+                <div className={styles.contentPrice}>
+                    <div className={styles.columnContentPrice}>
+                        <div>{props.title}</div>
+                        <div>{props.price}</div>
+                    </div>
+
+                    <img src="img/plus.png" alt="plus"/>
                 </div>
-                <img src="img/plus.png" alt="plus"/>
+
             </div>
         </div>
     );
