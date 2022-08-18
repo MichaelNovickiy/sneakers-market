@@ -2,6 +2,8 @@ import './App.scss';
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import {Route, Routes} from "react-router-dom";
+import Favorite from "./Pages/Favorite";
+import Cart from "./Pages/Cart";
 
 function App() {
     return (
@@ -9,7 +11,8 @@ function App() {
             <Header/>
             <Routes>
                 <Route path="/" element={<Main/>}/>
-                <Route path="cart" exact element={<h1>Favorite items</h1>}/>
+                <Route path="favorite" exact element={<Favorite />}/>
+                <Route path="cart" exact element={<Cart />}/>
             </Routes>
         </div>
     );

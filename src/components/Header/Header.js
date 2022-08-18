@@ -22,13 +22,15 @@ const Header = () => {
             <ul className={styles.rightHeader}>
                 <li>About Us</li>
                 <li>Contact Us</li>
-                <Link to={"/cart"}>
+                <Link to={"favorite"}>
                     <li><img src="img/heart.png" alt="heart"/></li>
                 </Link>
 
-                <li><img src="img/cart.png" alt="cart"/>
-                    <span>260 руб.</span>
-                </li>
+                <Link to={"cart"}>
+                    <li><img src="img/cart.png" alt="cart"/>
+                        <span>260 руб.</span>
+                    </li>
+                </Link>
             </ul>
         </div>
     );
