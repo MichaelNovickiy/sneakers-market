@@ -2,6 +2,11 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 h1 {
   font-family: 'Righteous', cursive;
   margin: 0;
