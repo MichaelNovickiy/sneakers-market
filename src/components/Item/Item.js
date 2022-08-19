@@ -1,13 +1,13 @@
 import styles from "./Item.module.scss";
 import React, {useContext} from "react";
-import {addItemCart, MarketDataContext} from "../../Context/AppContext";
+import MarketDataContext from "../../Context/AppContext";
 
 const Item = ({img, title, price, itemId}, ...props) => {
 
-    const addItemCart = useContext(MarketDataContext)
+    const {addItemCart} = useContext(MarketDataContext)
 
     const onClickAddItem = ({img, title, price, itemId}) => {
-        addItemCart.addItemCart({img, title, price, itemId})
+       addItemCart({img, title, price, itemId})
     }
 
     return (
