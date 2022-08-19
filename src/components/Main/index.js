@@ -3,8 +3,7 @@ import styles from './Main.module.scss';
 import Item from "../Item/Item";
 import axios from "axios";
 
-const Main = () => {
-
+const Index = () => {
     let [sneakers, setSneakers] = useState([]);
     let [searchValue, setSearchValue] = useState('')
 
@@ -13,7 +12,6 @@ const Main = () => {
             const response = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/sneakers')
             setSneakers(response.data)
         }
-
         fetchData()
     }, [])
 
@@ -35,6 +33,7 @@ const Main = () => {
                         item.title.toLowerCase().includes(searchValue.toLowerCase()),
                     ).map(item =>
                         <Item key={item.id}
+                              itemId={item.id}
                               title={item.title}
                               price={item.price}
                               img={item.img}/>
@@ -46,4 +45,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default Index;

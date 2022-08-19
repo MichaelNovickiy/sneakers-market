@@ -1,18 +1,26 @@
 import styles from "./Item.module.scss";
-import React from "react";
+import React, {useContext} from "react";
+import {addItemCart, MarketDataContext} from "../../Context/AppContext";
 
-const Item = (props) => {
+const Item = ({img, title, price, itemId}, ...props) => {
+
+    const addItemCart = useContext(MarketDataContext)
+
+    const onClickAddItem = ({img, title, price, itemId}) => {
+        addItemCart.addItemCart({img, title, price, itemId})
+    }
+
     return (
         <div className={styles.main}>
             <div className={styles.itemBlock}>
-                <img src={props.img} alt="Sneakers"/>
+                <img src={img} alt="Sneakers"/>
                 <div className={styles.contentPrice}>
                     <div className={styles.columnContentPrice}>
-                        <div>{props.title}</div>
-                        <div>{props.price}</div>
+                        <div>{title}</div>
+                        <div>{price}</div>
                     </div>
 
-                    <img src="img/plus.png" alt="plus"/>
+                    <img src="img/plus.png" alt="plus" onClick={() => onClickAddItem({img, title, price, itemId})}/>
                 </div>
 
             </div>
