@@ -1,23 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import styles from './Cart.module.scss'
 import CartOrderItem from "../components/CartOrderItem";
-import axios from "axios";
 import MarketDataContext from "../Context/AppContext";
-
 
 const Cart = () => {
 
-    const {cartItems, setCartItems} = useContext(MarketDataContext)
 
-    useEffect(() => {
-        async function fetchData() {
-            const response = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers')
-            setCartItems(response.data)
-        }
-        fetchData()
-    }, [])
-
-    console.log(cartItems)
+    const {cartItems} = useContext(MarketDataContext)
 
     return (
         <>
@@ -28,7 +17,7 @@ const Cart = () => {
 
             {cartItems.map(item =>
                 <CartOrderItem key={item.id}
-                               cartId={item.cartId}
+                               id={item.id}
                                img={item.img}
                                title={item.title}
                                price={item.price}

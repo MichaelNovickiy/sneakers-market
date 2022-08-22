@@ -6,20 +6,42 @@ import Favorite from "./Pages/Favorite";
 import Cart from "./Pages/Cart";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import MarketDataContext from './Context/AppContext'
+import ContextMarketData from './Context/AppContext'
 
 function App() {
 
     let [cartItems, setCartItems] = useState([])
 
-    const addItemCart = ({img, title, price, itemId}) => {
-        axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers', {
-            img, title, price, cartId: itemId
-        });
+    useEffect(() => {
+        async function fetchData() {
+            const response = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers')
+            setCartItems(response.data)
+        }
+
+        fetchData()
+    }, [])
+
+    const addItemCart = async ({img, title, price}) => {
+        try {
+            const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers', {
+                img, title, price
+            });
+            setCartItems(await (prevState => [...prevState, response.data]))
+        } catch (e) {
+            alert('Error' + e.message)
+        }
     }
 
-    const deleteCartItem = (cartId) => {
-        axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${cartId}`);
+    const deleteCartItem = async (propsId) => {
+        try {
+            const response =
+                await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${propsId}`);
+            if (response) {
+                setCartItems(cartItems.filter((f) => f.id !== propsId))
+            }
+        } catch (e) {
+            alert('Error' + e.message)
+        }
     }
 
     const contextValues = {
@@ -28,7 +50,7 @@ function App() {
 
 
     return (
-        <MarketDataContext.Provider value={contextValues}>
+        <ContextMarketData.Provider value={contextValues}>
             <div className="App">
                 <Header/>
                 <Routes>
@@ -37,7 +59,7 @@ function App() {
                     <Route path="cart" exact element={<Cart/>}/>
                 </Routes>
             </div>
-        </MarketDataContext.Provider>
+        </ContextMarketData.Provider>
     );
 }
 

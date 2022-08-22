@@ -19,7 +19,7 @@ const CartOrderItem = (props) => {
                 <div className={styles.itemText}>{props.title}</div>
                 <div className={styles.itemText}>{props.price}</div>
                 <div className={styles.itemDelete}
-                     onClick={() => deleteCartItemHandler(props.cartId)}
+                     onClick={() => deleteCartItemHandler(props.id)}
                 >x</div>
             </div>
         </div>
