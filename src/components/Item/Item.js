@@ -2,12 +2,12 @@ import styles from "./Item.module.scss";
 import React, {useContext} from "react";
 import MarketDataContext from "../../Context/AppContext";
 
-const Item = ({img, title, price}, ...props) => {
+const Item = ({itemId, img, title, price}) => {
 
-    const {addItemCart} = useContext(MarketDataContext)
+    const {addItemCart, isItemAdded} = useContext(MarketDataContext)
 
-    const onClickAddItem = ({img, title, price}) => {
-       addItemCart({img, title, price})
+    const onClickAddItem = ({img, title, price, itemId}) => {
+       addItemCart({img, title, price, itemId})
     }
 
     return (
@@ -19,10 +19,10 @@ const Item = ({img, title, price}, ...props) => {
                         <div>{title}</div>
                         <div>{price}</div>
                     </div>
-
-                    <img src="img/plus.png" alt="plus" onClick={() => onClickAddItem({img, title, price})}/>
+                    <img src={isItemAdded(itemId) ? "img/btn_done.svg" : "img/btn.png"}
+                         alt="plus"
+                         onClick={() => onClickAddItem({img, title, price, itemId})}/>
                 </div>
-
             </div>
         </div>
     );

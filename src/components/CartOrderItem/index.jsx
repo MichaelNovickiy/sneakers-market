@@ -10,8 +10,6 @@ const CartOrderItem = (props) => {
         deleteCartItem(cartId)
     }
 
-
-
     return (
         <div className={styles.cartOrder}>
             <div className={styles.cartItem}>

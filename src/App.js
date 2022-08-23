@@ -9,8 +9,7 @@ import axios from "axios";
 import ContextMarketData from './Context/AppContext'
 
 function App() {
-
-    let [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState([])
 
     useEffect(() => {
         async function fetchData() {
@@ -21,12 +20,22 @@ function App() {
         fetchData()
     }, [])
 
-    const addItemCart = async ({img, title, price}) => {
+    const addItemCart = async ({img, title, price, itemId}) => {
         try {
-            const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers', {
-                img, title, price
-            });
-            setCartItems(await (prevState => [...prevState, response.data]))
+            const item = cartItems.find(item => item.title === title)
+            if (!item) {
+                const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers', {
+                    img, title, price, itemId
+                });
+                setCartItems((prevState => [...prevState, response.data]))
+            }
+            else {
+                const response =
+                    await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${item.id}`);
+                if (response) {
+                    setCartItems(cartItems.filter((f) => f.id !== item.id))
+                }
+            }
         } catch (e) {
             alert('Error' + e.message)
         }
@@ -44,8 +53,13 @@ function App() {
         }
     }
 
+    const isItemAdded = (itemId) => {
+        console.log(cartItems)
+        return cartItems.some((obj) => Number(obj.itemId) === Number(itemId));
+    };
+
     const contextValues = {
-        addItemCart, cartItems, setCartItems, deleteCartItem
+        addItemCart, cartItems, setCartItems, deleteCartItem, isItemAdded
     }
 
 

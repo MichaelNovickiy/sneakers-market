@@ -33,6 +33,7 @@ const Index = () => {
                         item.title.toLowerCase().includes(searchValue.toLowerCase()),
                     ).map(item =>
                         <Item key={item.id}
+                              itemId={item.id}
                               title={item.title}
                               price={item.price}
                               img={item.img}/>
