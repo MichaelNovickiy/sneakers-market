@@ -12,6 +12,7 @@ const Index = () => {
             const response = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/sneakers')
             setSneakers(response.data)
         }
+
         fetchData()
     }, [])
 
@@ -36,7 +37,9 @@ const Index = () => {
                               itemId={item.id}
                               title={item.title}
                               price={item.price}
-                              img={item.img}/>
+                              img={item.img}
+                              buttonAddCart={true}
+                        />
                     )
                     }
                 </div>

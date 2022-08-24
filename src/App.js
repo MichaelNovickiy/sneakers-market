@@ -10,11 +10,15 @@ import ContextMarketData from './Context/AppContext'
 
 function App() {
     const [cartItems, setCartItems] = useState([])
+    const [favoriteItems, setFavoriteItems] = useState([])
 
     useEffect(() => {
         async function fetchData() {
-            const response = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers')
-            setCartItems(response.data)
+            const responseCartItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers')
+            setCartItems(responseCartItems.data)
+            const responseFavoriteItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items')
+            setFavoriteItems(responseFavoriteItems.data)
+
         }
 
         fetchData()
@@ -28,12 +32,31 @@ function App() {
                     img, title, price, itemId
                 });
                 setCartItems((prevState => [...prevState, response.data]))
-            }
-            else {
+            } else {
                 const response =
                     await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${item.id}`);
                 if (response) {
                     setCartItems(cartItems.filter((f) => f.id !== item.id))
+                }
+            }
+        } catch (e) {
+            alert('Error' + e.message)
+        }
+    }
+
+    const addFavoriteItem = async ({img, title, price, itemId}) => {
+        try {
+            const item = favoriteItems.find(item => item.title === title)
+            if (!item) {
+                const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items', {
+                    img, title, price, itemId
+                });
+                setFavoriteItems((prevState => [...prevState, response.data]))
+            } else {
+                const response =
+                    await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items/${item.id}`);
+                if (response) {
+                    setFavoriteItems(favoriteItems.filter((f) => f.id !== item.id))
                 }
             }
         } catch (e) {
@@ -53,13 +76,23 @@ function App() {
         }
     }
 
-    const isItemAdded = (itemId) => {
-        console.log(cartItems)
+    const isItemAddedCart = (itemId) => {
         return cartItems.some((obj) => Number(obj.itemId) === Number(itemId));
     };
 
+    const isItemAddedFavorite = (title) => {
+        return favoriteItems.some((obj) => (obj.title) === (title));
+    };
+
     const contextValues = {
-        addItemCart, cartItems, setCartItems, deleteCartItem, isItemAdded
+        addItemCart,
+        cartItems,
+        setCartItems,
+        deleteCartItem,
+        isItemAddedCart,
+        favoriteItems,
+        addFavoriteItem,
+        isItemAddedFavorite
     }
 
 

@@ -1,0 +1,26 @@
+.title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 32px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 40px 0;
+}
+
+.items {
+  display: flex;
+}
+
+.textFavoriteIsClean {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
