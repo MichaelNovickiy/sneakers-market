@@ -1,7 +1,7 @@
 import './App.scss';
 import Header from "./components/Header/Header";
 import Index from "./components/Main";
-import {Link, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Favorite from "./Pages/Favorite";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -116,13 +116,15 @@ function App() {
 
     return (
         <ContextMarketData.Provider value={contextValues}>
-            <div className="App">
-                <Header/>
-                <Routes>
-                    <Route path="/" element={<Index/>}/>
-                    <Route path="favorite" exact element={<Favorite/>}/>
-                    <Route path="cart" exact element={<Cart/>}/>
-                </Routes>
+            <div className="main">
+                <div className="mainContainer">
+                    <Header/>
+                    <Routes>
+                        <Route path="/" element={<Index/>}/>
+                        <Route path="favorite" exact element={<Favorite/>}/>
+                        <Route path="cart" exact element={<Cart/>}/>
+                    </Routes>
+                </div>
             </div>
         </ContextMarketData.Provider>
     );

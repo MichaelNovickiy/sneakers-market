@@ -6,7 +6,7 @@ import MarketDataContext from "../../Context/AppContext";
 
 const Header = () => {
 
-    const {totalPrice} = useContext(MarketDataContext)
+    const {totalPrice, favoriteItems} = useContext(MarketDataContext)
 
     return (
         <div className={styles.mainHeader}>
@@ -27,11 +27,16 @@ const Header = () => {
                 <li>About Us</li>
                 <li>Contact Us</li>
                 <Link to={"favorite"}>
-                    <li><img src="img/heart.png" alt="heart"/></li>
+                    <li>
+                        <img src="img/heart.png" alt="heart"/>
+                        <span>{favoriteItems.length}</span>
+                    </li>
+
                 </Link>
 
                 <Link to={"cart"}>
-                    <li><img src="img/cart.png" alt="cart"/>
+                    <li>
+                        <img src="img/cart.png" alt="cart"/>
                         <span>{totalPrice}$</span>
                     </li>
                 </Link>
