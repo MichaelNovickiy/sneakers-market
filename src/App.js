@@ -3,10 +3,11 @@ import Header from "./components/Header/Header";
 import Index from "./components/Main";
 import {Link, Route, Routes} from "react-router-dom";
 import Favorite from "./Pages/Favorite";
-import Cart from "./Pages/Cart";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ContextMarketData from './Context/AppContext'
+import Cart from "./Pages/Cart";
+
 
 function App() {
     const [cartItems, setCartItems] = useState([])
@@ -87,9 +88,16 @@ function App() {
         (prevValue, currentValue) => Number(prevValue) + Number(currentValue.price), 0
     );
 
-    const onClickBackButton = () => {
-        return <Link to={"/"}/>
-
+    const cleanUpCart = async (lengthCart) => {
+        try {
+            for (let i = 1; i <= lengthCart; i++) {
+                await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${i}`);
+            }
+            setCartItems(prevState => [])
+        } catch (e) {
+            alert('Something error')
+            console.log(e)
+        }
     }
 
     const contextValues = {
@@ -102,7 +110,7 @@ function App() {
         addFavoriteItem,
         isItemAddedFavorite,
         totalPrice,
-        onClickBackButton
+        cleanUpCart
     }
 
 

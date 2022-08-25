@@ -1,0 +1,28 @@
+.cartBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20%;
+
+  .cart {
+    background-color: #ffffff;
+    text-align: center;
+
+  }
+
+  img {
+    margin: 0 auto;
+  }
+
+  .cartClean {
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    opacity: 0.4;
+    margin: 15px 0;
+  }
+}
