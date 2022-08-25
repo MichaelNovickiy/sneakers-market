@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './Header.module.scss';
 import {Link} from "react-router-dom";
+import MarketDataContext from "../../Context/AppContext";
 
 
 const Header = () => {
+
+    const {totalPrice} = useContext(MarketDataContext)
+
     return (
         <div className={styles.mainHeader}>
 
@@ -28,7 +32,7 @@ const Header = () => {
 
                 <Link to={"cart"}>
                     <li><img src="img/cart.png" alt="cart"/>
-                        <span>260 руб.</span>
+                        <span>{totalPrice}$</span>
                     </li>
                 </Link>
             </ul>

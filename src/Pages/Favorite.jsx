@@ -24,7 +24,9 @@ const Favorite = () => {
                         }
                     </div>
                     :
-                    <div className={styles.textFavoriteIsClean}>Nothing added yet</div>
+                    <div className={styles.textFavoriteIsClean}>
+                        Nothing added yet
+                    </div>
             }
 
         </>

@@ -1,7 +1,7 @@
 import './App.scss';
 import Header from "./components/Header/Header";
 import Index from "./components/Main";
-import {Route, Routes} from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 import Favorite from "./Pages/Favorite";
 import Cart from "./Pages/Cart";
 import {useEffect, useState} from "react";
@@ -18,7 +18,6 @@ function App() {
             setCartItems(responseCartItems.data)
             const responseFavoriteItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items')
             setFavoriteItems(responseFavoriteItems.data)
-
         }
 
         fetchData()
@@ -84,6 +83,15 @@ function App() {
         return favoriteItems.some((obj) => (obj.title) === (title));
     };
 
+    const totalPrice = cartItems.reduce(
+        (prevValue, currentValue) => Number(prevValue) + Number(currentValue.price), 0
+    );
+
+    const onClickBackButton = () => {
+        return <Link to={"/"}/>
+
+    }
+
     const contextValues = {
         addItemCart,
         cartItems,
@@ -92,7 +100,9 @@ function App() {
         isItemAddedCart,
         favoriteItems,
         addFavoriteItem,
-        isItemAddedFavorite
+        isItemAddedFavorite,
+        totalPrice,
+        onClickBackButton
     }
 
 

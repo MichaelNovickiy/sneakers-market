@@ -21,7 +21,7 @@ const Item = ({itemId, img, title, price, buttonAddCart = null}) => {
                 <div className={styles.contentPrice}>
                     <div className={styles.columnContentPrice}>
                         <div>{title}</div>
-                        <div>{price}</div>
+                        <div>{price}$</div>
                     </div>
                     {
                         buttonAddCart
