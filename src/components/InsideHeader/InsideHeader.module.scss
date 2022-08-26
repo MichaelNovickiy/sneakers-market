@@ -1,4 +1,6 @@
 .favoriteHeader{
+  width: 60%;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,7 +20,6 @@
     opacity: 0.6;
     font-size: 14px;
     letter-spacing: 0.02em;
-    margin-right: 50px;
 
     img {
       padding-right: 5px;
@@ -26,25 +27,4 @@
       top: 3px;
     }
   }
-
 }
-
-.items {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.textFavoriteIsClean {
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  font-size: 30px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-

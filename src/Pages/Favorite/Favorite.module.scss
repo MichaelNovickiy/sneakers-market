@@ -1,0 +1,20 @@
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.textFavoriteIsClean {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+

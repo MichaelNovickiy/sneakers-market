@@ -1,12 +1,12 @@
 import './App.scss';
 import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
+import Main from "./Pages/Main/Main";
 import {Route, Routes} from "react-router-dom";
-import Favorite from "./Pages/Favorite";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import ContextMarketData from './Context/AppContext'
-import Cart from "./Pages/Cart";
+import Cart from "./Pages/Cart/Cart";
+import Favorite from "./Pages/Favorite/Favorite";
 
 
 function App() {

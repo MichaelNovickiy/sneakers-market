@@ -1,11 +1,17 @@
 import styles from "./Item.module.scss";
 import React, {useContext} from "react";
-import MarketDataContext from "../../Context/AppContext";
-import Button from "../Button";
+import MarketDataContext from "../../../Context/AppContext";
+import Button from "../../../components/Button/Button";
 
 const Item = ({itemId, img, title, price, buttonAddCart = null}) => {
 
-    const {addItemCart, isItemAddedCart, addFavoriteItem, isItemAddedFavorite, bntDisabled} = useContext(MarketDataContext)
+    const {
+        addItemCart,
+        isItemAddedCart,
+        addFavoriteItem,
+        isItemAddedFavorite,
+        bntDisabled
+    } = useContext(MarketDataContext)
 
     return (
         <div className={styles.main}>

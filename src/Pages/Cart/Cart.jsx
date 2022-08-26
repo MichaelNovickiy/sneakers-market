@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
-import CartIsEmpty from "../components/Cart/CartIsEmpty";
-import CartItems from "../components/Cart/CartItems";
-import MarketDataContext from "../Context/AppContext";
+import CartIsEmpty from "./CartIsEmpty/CartIsEmpty";
+import CartItems from "./CartItems/CartItems";
+import MarketDataContext from "../../Context/AppContext";
 
 const Cart = () => {
 

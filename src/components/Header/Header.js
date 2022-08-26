@@ -24,11 +24,9 @@ const Header = () => {
             </div>
 
             <ul className={styles.rightHeader}>
-                <li>About Us</li>
-                <li>Contact Us</li>
                 <Link to={"favorite"}>
                     <li>
-                        <img src="img/heart.png" alt="heart"/>
+                        <img src="img/heart.svg" alt="heart"/>
                         <span>{favoriteItems.length}</span>
                     </li>
 
@@ -36,7 +34,7 @@ const Header = () => {
 
                 <Link to={"cart"}>
                     <li>
-                        <img src="img/cart.png" alt="cart"/>
+                        <img src="img/cart.svg" alt="cart"/>
                         <span>{totalPrice}$</span>
                     </li>
                 </Link>

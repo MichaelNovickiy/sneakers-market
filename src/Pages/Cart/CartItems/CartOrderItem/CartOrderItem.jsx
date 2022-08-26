@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import styles from './CartOrderItem.module.scss'
-import MarketDataContext from "../../Context/AppContext";
+import MarketDataContext from "../../../../Context/AppContext";
 
 const CartOrderItem = (props) => {
 

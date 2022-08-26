@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Main.module.scss';
-import Item from "../Item/Item";
+import Item from "./Item/Item";
 import axios from "axios";
 
 const Main = () => {

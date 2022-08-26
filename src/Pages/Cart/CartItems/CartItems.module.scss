@@ -9,11 +9,13 @@
   .cartText {
     font-size: 30px;
     letter-spacing: 0.07em;
+    text-transform: uppercase;
 
     img {
       padding-right: 10px;
       position: relative;
       top: 5px;
+      height: 100%;
     }
   }
 
@@ -22,12 +24,11 @@
     opacity: 0.6;
     font-size: 14px;
     letter-spacing: 0.02em;
-
-    img {
-      padding-right: 5px;
-      position: relative;
-      top: 3px;
-    }
+  }
+  img {
+    padding-right: 5px;
+    position: relative;
+    top: 3px;
   }
 }
 

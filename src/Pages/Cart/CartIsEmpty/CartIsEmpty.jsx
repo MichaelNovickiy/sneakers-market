@@ -1,7 +1,7 @@
-import Button from "../Button";
+import Button from "../../../components/Button/Button";
 import React, {useContext} from "react";
 import styles from './CartIsEmpty.module.scss'
-import MarketDataContext from "../../Context/AppContext";
+import MarketDataContext from "../../../Context/AppContext";
 
 const CartIsEmpty = () => {
 

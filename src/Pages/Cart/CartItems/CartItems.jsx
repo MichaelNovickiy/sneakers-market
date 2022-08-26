@@ -1,8 +1,9 @@
 import React, {useContext} from "react";
-import MarketDataContext from "../../Context/AppContext";
+import MarketDataContext from "../../../Context/AppContext";
 import styles from "./CartItems.module.scss";
-import CartOrderItem from "../CartOrderItem";
-import Button from "../Button";
+import CartOrderItem from "./CartOrderItem/CartOrderItem";
+import Button from "../../../components/Button/Button";
+import InsideHeader from "../../../components/InsideHeader/InsideHeader";
 
 const CartItems = () => {
 
@@ -10,17 +11,12 @@ const CartItems = () => {
 
     return (
         <>
-            <div className={styles.cartHeader}>
-                <div className={styles.cartText}>
-                    <img src="/img/cart.png" alt="cart"/>
-                    Cart
-                </div>
-                <div className={styles.cleanText}
-                     onClick={() => cleanUpCart(cartItems.length)}>
-                    <img src="/img/trash.png" alt="trash"/>
-                    Empty the cart
-                </div>
-            </div>
+
+            <InsideHeader
+                title={'Cart'}
+                nameItem={'cart'}
+                cleanUpAllHandler={() => cleanUpCart(cartItems.length)}
+            />
 
             {cartItems.map(item =>
                 <CartOrderItem key={item.id}
