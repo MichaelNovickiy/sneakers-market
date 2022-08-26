@@ -1,10 +1,11 @@
 import styles from "./Item.module.scss";
 import React, {useContext} from "react";
 import MarketDataContext from "../../Context/AppContext";
+import Button from "../Button";
 
 const Item = ({itemId, img, title, price, buttonAddCart = null}) => {
 
-    const {addItemCart, isItemAddedCart, addFavoriteItem, isItemAddedFavorite} = useContext(MarketDataContext)
+    const {addItemCart, isItemAddedCart, addFavoriteItem, isItemAddedFavorite, bntDisabled} = useContext(MarketDataContext)
 
     return (
         <div className={styles.main}>
@@ -18,17 +19,19 @@ const Item = ({itemId, img, title, price, buttonAddCart = null}) => {
                     />
                 </div>
                 <img src={img} alt="Sneakers"/>
-                <div className={styles.contentPrice}>
-                    <div className={styles.columnContentPrice}>
-                        <div>{title}</div>
-                        <div>{price}$</div>
-                    </div>
+                <div className={styles.titleItem}>{title}</div>
+                <div className={styles.contentPriceWithBtn}>
+                    <div>{price}$</div>
                     {
                         buttonAddCart
                             ?
-                            <img src={isItemAddedCart(itemId) ? "img/btn_done.svg" : "img/btn.png"}
-                                 alt="plus"
-                                 onClick={() => addItemCart({img, title, price, itemId})}/>
+                            <>
+                                <Button onClick={() => addItemCart({img, title, price, itemId})}
+                                        className={isItemAddedCart(itemId) ? styles.buttonAddItem : null}
+                                >
+                                    {isItemAddedCart(itemId) ? "Added to Bag" : 'Add to Bag'}
+                                </Button>
+                            </>
                             : null
                     }
                 </div>

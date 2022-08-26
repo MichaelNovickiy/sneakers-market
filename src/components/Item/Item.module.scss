@@ -1,11 +1,14 @@
 .main {
-  width: 25%;
+  width: 320px;
+  height: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
+
   .itemBlock {
     padding: 15px;
+    height: 100%;
 
     .favorite {
       position: absolute;
@@ -18,34 +21,29 @@
       }
     }
 
-
     img {
       width: 100%;
+      height: 80%;
       transition: all .2s ease-in-out;
     }
 
-    .contentPrice {
+    .titleItem {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .contentPriceWithBtn {
+      font-size: 14px;
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
 
-      .columnContentPrice {
-        div {
-          font-family: 'Montserrat', serif;
-          font-style: normal;
-          font-weight: 500;
-          letter-spacing: 0.5px;
-        }
-      }
-
-      img {
-        height: 50px;
-        width: 50px;
-        cursor: pointer;
+      .buttonAddItem {
+        background-color: #343434;
+        color: white;
       }
     }
-
   }
 }

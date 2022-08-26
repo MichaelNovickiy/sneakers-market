@@ -3,7 +3,7 @@ import styles from './Main.module.scss';
 import Item from "../Item/Item";
 import axios from "axios";
 
-const Index = () => {
+const Main = () => {
     let [sneakers, setSneakers] = useState([]);
     let [searchValue, setSearchValue] = useState('')
 
@@ -55,4 +55,4 @@ const Index = () => {
     );
 };
 
-export default Index;
+export default Main;

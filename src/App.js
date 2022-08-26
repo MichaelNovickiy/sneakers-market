@@ -1,6 +1,6 @@
 import './App.scss';
 import Header from "./components/Header/Header";
-import Index from "./components/Main";
+import Main from "./components/Main/Main";
 import {Route, Routes} from "react-router-dom";
 import Favorite from "./Pages/Favorite";
 import {useEffect, useState} from "react";
@@ -12,6 +12,7 @@ import Cart from "./Pages/Cart";
 function App() {
     const [cartItems, setCartItems] = useState([])
     const [favoriteItems, setFavoriteItems] = useState([])
+    const [bntDisabled, setBntDisabled] = useState(false)
 
     useEffect(() => {
         async function fetchData() {
@@ -25,6 +26,7 @@ function App() {
     }, [])
 
     const addItemCart = async ({img, title, price, itemId}) => {
+        setButtonDisable(true)
         try {
             const item = cartItems.find(item => item.title === title)
             if (!item) {
@@ -42,6 +44,7 @@ function App() {
         } catch (e) {
             alert('Error' + e.message)
         }
+        setButtonDisable(false)
     }
 
     const addFavoriteItem = async ({img, title, price, itemId}) => {
@@ -100,6 +103,22 @@ function App() {
         }
     }
 
+    const cleanUpFavorites = async (lengthFavorites) => {
+        try {
+            for (let i = 1; i <= lengthFavorites; i++) {
+                await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items/${i}`);
+            }
+            setFavoriteItems(prevState => [])
+        } catch (e) {
+            alert('Something error')
+            console.log(e)
+        }
+    }
+
+    const setButtonDisable = (value) => {
+        setBntDisabled(value)
+    }
+
     const contextValues = {
         addItemCart,
         cartItems,
@@ -110,21 +129,23 @@ function App() {
         addFavoriteItem,
         isItemAddedFavorite,
         totalPrice,
-        cleanUpCart
+        cleanUpCart,
+        cleanUpFavorites,
+        bntDisabled
     }
 
 
     return (
         <ContextMarketData.Provider value={contextValues}>
             <div className="main">
-                <div className="mainContainer">
+                <>
                     <Header/>
                     <Routes>
-                        <Route path="/" element={<Index/>}/>
+                        <Route path="/" element={<Main/>}/>
                         <Route path="favorite" exact element={<Favorite/>}/>
                         <Route path="cart" exact element={<Cart/>}/>
                     </Routes>
-                </div>
+                </>
             </div>
         </ContextMarketData.Provider>
     );

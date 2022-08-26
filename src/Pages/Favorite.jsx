@@ -5,11 +5,19 @@ import MarketDataContext from "../Context/AppContext";
 
 const Favorite = () => {
 
-    const {favoriteItems} = useContext(MarketDataContext)
+    const {favoriteItems, cleanUpFavorites} = useContext(MarketDataContext)
 
     return (
         <>
-            <div className={styles.title}>Favorite items</div>
+            <div className={styles.favoriteHeader}>
+                <div className={styles.title}>Favorite items</div>
+                <div className={styles.cleanText}
+                     onClick={() => cleanUpFavorites(favoriteItems.length)}
+                >
+                    <img src="/img/trash.png" alt="trash"/>
+                    Empty the favorites
+                </div>
+            </div>
             {
                 favoriteItems.length
                     ?
