@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/sneakers-market/static/css/main.1913b182.css",
+    "main.js": "/sneakers-market/static/js/main.1473ba58.js",
+    "index.html": "/sneakers-market/index.html",
+    "main.1913b182.css.map": "/sneakers-market/static/css/main.1913b182.css.map",
+    "main.1473ba58.js.map": "/sneakers-market/static/js/main.1473ba58.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1913b182.css",
+    "static/js/main.1473ba58.js"
+  ]
+}
