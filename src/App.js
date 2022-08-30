@@ -2,11 +2,14 @@ import './App.scss';
 import Header from "./components/Header/Header";
 import Main from "./Pages/Main/Main";
 import {Route, Routes} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import ContextMarketData from './Context/AppContext'
 import Cart from "./Pages/Cart/Cart";
 import Favorite from "./Pages/Favorite/Favorite";
+import Footer from "./components/Footer/Footer";
+import AboutUs from "./Pages/AboutUs/AboutUs";
+import ContactUs from "./Pages/ContactUs/ContactUs";
 
 
 function App() {
@@ -138,17 +141,19 @@ function App() {
     return (
         <ContextMarketData.Provider value={contextValues}>
             <div className="main">
-                <>
-                    <Header/>
-                    <Routes>
-                        <Route path="/" element={<Main/>}/>
-                        <Route path="favorite" exact element={<Favorite/>}/>
-                        <Route path="cart" exact element={<Cart/>}/>
-                    </Routes>
-                </>
+                <Header/>
+                <Routes>
+                    <Route path="/" element={<Main/>}/>
+                    <Route path="favorite" exact element={<Favorite/>}/>
+                    <Route path="cart" exact element={<Cart/>}/>
+                    <Route path="about_us" exact element={<AboutUs/>}/>
+                    <Route path="contact_us" exact element={<ContactUs/>}/>
+                </Routes>
+                <Footer/>
             </div>
         </ContextMarketData.Provider>
     );
 }
 
 export default App;
+

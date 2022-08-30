@@ -9,6 +9,8 @@ const Favorite = () => {
 
     const {favoriteItems, cleanUpFavorites, onClickBackButton} = useContext(MarketDataContext)
 
+    console.log(favoriteItems)
+
     return (
         <>
             {
@@ -26,7 +28,8 @@ const Favorite = () => {
                                       itemId={item.id}
                                       title={item.title}
                                       price={item.price}
-                                      img={item.img}/>
+                                      img={item.img}
+                                />
                             )
                             }
                         </div>

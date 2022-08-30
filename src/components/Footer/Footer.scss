@@ -1,0 +1,25 @@
+.footer {
+  border-top: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+
+  .rights{
+    opacity: 0.8;
+  }
+
+  .instagram {
+    text-transform: uppercase;
+
+    img {
+      display: block;
+      margin: 0 auto 10px;
+      width: 40px;
+    }
+  }
+
+  .contacts span {
+    margin: 0 10px;
+  }
+}
