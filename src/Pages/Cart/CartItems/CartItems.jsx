@@ -11,12 +11,13 @@ const CartItems = () => {
 
     return (
         <>
-
-            <InsideHeader
-                title={'Cart'}
-                nameItem={'cart'}
-                cleanUpAllHandler={() => cleanUpCart(cartItems.length)}
-            />
+            <div className={styles.headerBlock}>
+                <InsideHeader
+                    title={'Cart'}
+                    nameItem={'cart'}
+                    cleanUpAllHandler={() => cleanUpCart(cartItems.length)}
+                />
+            </div>
 
             {cartItems.map(item =>
                 <CartOrderItem key={item.id}

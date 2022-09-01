@@ -9,8 +9,6 @@ const Favorite = () => {
 
     const {favoriteItems, cleanUpFavorites, onClickBackButton} = useContext(MarketDataContext)
 
-    console.log(favoriteItems)
-
     return (
         <>
             {
@@ -25,10 +23,11 @@ const Favorite = () => {
                         <div className={styles.items}>
                             {favoriteItems.map(item =>
                                 <Item key={item.id}
-                                      itemId={item.id}
+                                      itemId={item.itemId}
                                       title={item.title}
                                       price={item.price}
                                       img={item.img}
+                                      buttonAddCart={true}
                                 />
                             )
                             }

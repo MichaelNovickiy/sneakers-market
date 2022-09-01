@@ -1,35 +1,6 @@
-.cartHeader {
-  display: flex;
+.headerBlock {
   width: 60%;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 3% auto 2%;
-
-  .cartText {
-    font-size: 30px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-
-    img {
-      padding-right: 10px;
-      position: relative;
-      top: 5px;
-      height: 100%;
-    }
-  }
-
-  .cleanText {
-    cursor: pointer;
-    opacity: 0.6;
-    font-size: 14px;
-    letter-spacing: 0.02em;
-  }
-  img {
-    padding-right: 5px;
-    position: relative;
-    top: 3px;
-  }
+  margin: 0 auto;
 }
 
 .cartBottom {
@@ -47,10 +18,11 @@
     margin: 10px 0;
   }
 
-  .back{
+  .back {
     opacity: 0.4;
   }
-  .pay{
+
+  .pay {
     background-color: #343434;
     color: white;
     border: 0;

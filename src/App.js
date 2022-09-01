@@ -28,10 +28,14 @@ function App() {
         fetchData()
     }, [])
 
+    // console.log(cartItems)
+    console.log(favoriteItems)
+
     const addItemCart = async ({img, title, price, itemId}) => {
         setButtonDisable(true)
         try {
-            const item = cartItems.find(item => item.title === title)
+            // const item = cartItems.find(item => item.title === title)
+            const item = cartItems.find(item => item.itemId === itemId)
             if (!item) {
                 const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers', {
                     img, title, price, itemId
@@ -52,7 +56,8 @@ function App() {
 
     const addFavoriteItem = async ({img, title, price, itemId}) => {
         try {
-            const item = favoriteItems.find(item => item.title === title)
+            // const item = favoriteItems.find(item => item.title === title)
+            const item = favoriteItems.find(item => item.itemId === itemId)
             if (!item) {
                 const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items', {
                     img, title, price, itemId
@@ -70,12 +75,12 @@ function App() {
         }
     }
 
-    const deleteCartItem = async (propsId) => {
+    const deleteCartItem = async (cartId) => {
         try {
             const response =
-                await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${propsId}`);
+                await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${cartId}`);
             if (response) {
-                setCartItems(cartItems.filter((f) => f.id !== propsId))
+                setCartItems(cartItems.filter((f) => f.id !== cartId))
             }
         } catch (e) {
             alert('Error' + e.message)

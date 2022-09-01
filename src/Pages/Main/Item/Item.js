@@ -9,8 +9,7 @@ const Item = ({itemId, img, title, price, buttonAddCart = null}) => {
         addItemCart,
         isItemAddedCart,
         addFavoriteItem,
-        isItemAddedFavorite,
-        bntDisabled
+        isItemAddedFavorite
     } = useContext(MarketDataContext)
 
     return (
