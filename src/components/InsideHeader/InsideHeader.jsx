@@ -9,7 +9,7 @@ const InsideHeader = (props) => {
                 <div className={styles.cleanText}
                      onClick={props.cleanUpAllHandler}
                 >
-                    <img src="/img/trash.png" alt="trash"/>
+                    <img src="img/trash.png" alt="trash"/>
                     Empty the {props.nameItem}
                 </div>
             </div>

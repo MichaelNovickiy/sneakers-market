@@ -3,6 +3,7 @@ import styles from './Header.module.scss';
 import {Link} from "react-router-dom";
 import MarketDataContext from "../../Context/AppContext";
 
+console.log(process.env.PUBLIC_URL + '/')
 
 const Header = () => {
 
@@ -12,11 +13,11 @@ const Header = () => {
         <div className={styles.mainHeader}>
 
             <div className={styles.leftHeader}>
-                <Link to={"/"}>
+                <Link to={process.env.PUBLIC_URL + '/'}>
                     <img src="img/logo.png" alt="Logotype"/>
                 </Link>
                 <div className={styles.title}>
-                    <Link to={"/"}>
+                    <Link to={process.env.PUBLIC_URL + '/'}>
                         <h1>RAVE</h1>
                     </Link>
                     <p>Official Sneaker Store.</p>
@@ -24,7 +25,7 @@ const Header = () => {
             </div>
 
             <ul className={styles.rightHeader}>
-                <Link to={"favorite"}>
+                <Link to={process.env.PUBLIC_URL + 'favorite'}>
                     <li>
                         <img src="img/heart.svg" alt="heart"/>
                         <span>{favoriteItems.length}</span>
@@ -32,7 +33,7 @@ const Header = () => {
 
                 </Link>
 
-                <Link to={"cart"}>
+                <Link to={process.env.PUBLIC_URL + 'cart'}>
                     <li>
                         <img src="img/cart.svg" alt="cart"/>
                         <span>{totalPrice}$</span>

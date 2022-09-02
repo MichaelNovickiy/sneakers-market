@@ -1,6 +1,6 @@
 import './App.scss';
 import Header from "./components/Header/Header";
-import Main from "./Pages/Main/Main";
+import Home from "./Pages/Home/Home";
 import {Route, Routes} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
@@ -17,6 +17,8 @@ function App() {
     const [favoriteItems, setFavoriteItems] = useState([])
     const [bntDisabled, setBntDisabled] = useState(false)
 
+
+
     useEffect(() => {
         async function fetchData() {
             const responseCartItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers')
@@ -28,13 +30,9 @@ function App() {
         fetchData()
     }, [])
 
-    // console.log(cartItems)
-    console.log(favoriteItems)
-
     const addItemCart = async ({img, title, price, itemId}) => {
         setButtonDisable(true)
         try {
-            // const item = cartItems.find(item => item.title === title)
             const item = cartItems.find(item => item.itemId === itemId)
             if (!item) {
                 const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers', {
@@ -56,7 +54,6 @@ function App() {
 
     const addFavoriteItem = async ({img, title, price, itemId}) => {
         try {
-            // const item = favoriteItems.find(item => item.title === title)
             const item = favoriteItems.find(item => item.itemId === itemId)
             if (!item) {
                 const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items', {
@@ -148,11 +145,11 @@ function App() {
             <div className="main">
                 <Header/>
                 <Routes>
-                    <Route path="/" element={<Main/>}/>
-                    <Route path="favorite" exact element={<Favorite/>}/>
-                    <Route path="cart" exact element={<Cart/>}/>
-                    <Route path="about_us" exact element={<AboutUs/>}/>
-                    <Route path="contact_us" exact element={<ContactUs/>}/>
+                    <Route path={process.env.PUBLIC_URL + '/'} element={<Home/>}/>
+                    <Route path={process.env.PUBLIC_URL + 'favorite'} exact element={<Favorite/>}/>
+                    <Route path={process.env.PUBLIC_URL + 'cart'} exact element={<Cart/>}/>
+                    <Route path={process.env.PUBLIC_URL + 'about_us'} exact element={<AboutUs/>}/>
+                    <Route path={process.env.PUBLIC_URL + 'contact_us'} exact element={<ContactUs/>}/>
                 </Routes>
                 <Footer/>
             </div>

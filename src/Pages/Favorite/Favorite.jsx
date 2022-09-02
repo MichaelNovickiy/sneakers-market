@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import styles from './Favorite.module.scss'
-import Item from "../Main/Item/Item";
+import Item from "../Home/Item/Item";
 import MarketDataContext from "../../Context/AppContext";
 import InsideHeader from "../../components/InsideHeader/InsideHeader";
 import Button from "../../components/Button/Button";

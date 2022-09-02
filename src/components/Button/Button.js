@@ -20,7 +20,7 @@ const Button = (props) => {
         <>
             {props.back
                 ?
-                <Link to={"/"}>{button}</Link>
+                <Link to={process.env.PUBLIC_URL + '/'}>{button}</Link>
                 : button
             }
         </>

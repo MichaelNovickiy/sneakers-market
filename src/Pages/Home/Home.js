@@ -1,9 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from './Main.module.scss';
 import Item from "./Item/Item";
 import axios from "axios";
+import MarketDataContext from "../../Context/AppContext";
 
-const Main = () => {
+const Home = () => {
+    //pagination
+    const [totalItems, setTotalItems]  = useState(0);
+    const [currentPage, setCurrentPage]  = useState(1);
+    const limit = 8;
+
+    const pages = [1,2,3,4,5]
+
     let [sneakers, setSneakers] = useState([]);
     let [searchValue, setSearchValue] = useState('')
 
@@ -11,6 +19,7 @@ const Main = () => {
         async function fetchData() {
             const response = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/sneakers')
             setSneakers(response.data)
+            setTotalItems(response.data)
         }
 
         fetchData()
@@ -55,4 +64,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default Home;

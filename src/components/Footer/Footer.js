@@ -16,8 +16,8 @@ const Footer = () => {
                 <div>Instagram</div>
             </a>
             <div className="contacts">
-                <Link to={"about_us"}><span>About Us</span></Link>
-                <Link to={"contact_us"}><span>Contact Us</span></Link>
+                <Link to={process.env.PUBLIC_URL + 'about_us'}><span>About Us</span></Link>
+                <Link to={process.env.PUBLIC_URL + 'contact_us'}><span>Contact Us</span></Link>
             </div>
         </div>
     );
