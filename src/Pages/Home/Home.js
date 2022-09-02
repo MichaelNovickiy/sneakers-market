@@ -1,29 +1,34 @@
-import React, {useContext, useEffect, useState} from 'react';
-import styles from './Main.module.scss';
+import React, {useEffect, useState} from 'react';
+import styles from './Home.module.scss';
 import Item from "./Item/Item";
 import axios from "axios";
-import MarketDataContext from "../../Context/AppContext";
+import {createPages} from "../../components/Utils/pageCreator";
 
 const Home = () => {
+    const [isLoading, setIsLoading] = useState(true)
+
     //pagination
-    const [totalItems, setTotalItems]  = useState(0);
-    const [currentPage, setCurrentPage]  = useState(1);
+    const [totalItems, setTotalItems] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const limit = 8;
+    const pagesCount = Math.ceil(totalItems / limit)
+    const pages = []
+    createPages(pages, pagesCount, currentPage)
 
-    const pages = [1,2,3,4,5]
-
-    let [sneakers, setSneakers] = useState([]);
-    let [searchValue, setSearchValue] = useState('')
+    const [sneakers, setSneakers] = useState([]);
+    const [searchValue, setSearchValue] = useState('')
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/sneakers')
+        async function fetchData(currentPage, limit) {
+            const getAllItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/sneakers')
+            const response = await axios.get(`https://62fe273041165d66bfb99d5a.mockapi.io/sneakers?page=${currentPage}&limit=${limit}`)
             setSneakers(response.data)
-            setTotalItems(response.data)
+            setTotalItems(getAllItems.data.length)
+            setIsLoading(false)
         }
 
-        fetchData()
-    }, [])
+        fetchData(currentPage, limit)
+    }, [currentPage])
 
     let searchValueHandler = (e) => {
         setSearchValue(e.currentTarget.value)
@@ -46,19 +51,37 @@ const Home = () => {
             </div>
             <div className={styles.items}>
                 <div className={styles.item}>
-                    {sneakers.filter((item) =>
-                        item.title.toLowerCase().includes(searchValue.toLowerCase()),
-                    ).map(item =>
-                        <Item key={item.id}
-                              itemId={item.id}
-                              title={item.title}
-                              price={item.price}
-                              img={item.img}
-                              buttonAddCart={true}
-                        />
-                    )
+                    {isLoading
+                        ?
+                        [...Array(8)].map(item => <Item key={item} isLoading={isLoading}/>)
+                        :
+                        sneakers.filter((item) =>
+                            item.title.toLowerCase().includes(searchValue.toLowerCase()),
+                        ).map(item =>
+                            <Item
+                                key={item.id}
+                                itemId={item.id}
+                                title={item.title}
+                                price={item.price}
+                                img={item.img}
+                                buttonAddCart={true}
+                                isLoading={isLoading}
+                            />
+                        )
                     }
                 </div>
+            </div>
+            <div className={styles.pages}>
+                {pages.map((page, index) => (
+                    <span className={currentPage === page ? styles.current_page : styles.page}
+                          key={index}
+                          onClick={() => {
+                              setCurrentPage(page)
+                          }}
+                    >
+                        {page}
+                    </span>))
+                }
             </div>
         </div>
     );

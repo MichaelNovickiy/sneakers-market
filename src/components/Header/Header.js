@@ -3,8 +3,6 @@ import styles from './Header.module.scss';
 import {Link} from "react-router-dom";
 import MarketDataContext from "../../Context/AppContext";
 
-console.log(process.env.PUBLIC_URL + '/')
-
 const Header = () => {
 
     const {totalPrice, favoriteItems} = useContext(MarketDataContext)

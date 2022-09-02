@@ -17,10 +17,9 @@ function App() {
     const [favoriteItems, setFavoriteItems] = useState([])
     const [bntDisabled, setBntDisabled] = useState(false)
 
-
-
     useEffect(() => {
         async function fetchData() {
+            // setIsLoading(true)
             const responseCartItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers')
             setCartItems(responseCartItems.data)
             const responseFavoriteItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items')

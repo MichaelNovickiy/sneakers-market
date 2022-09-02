@@ -40,7 +40,8 @@
   }
 
   .items {
-    margin: 0 -15px;
+    padding: 0 15px;
+    width: 100%;
 
     .item {
       display: flex;
@@ -48,6 +49,25 @@
       flex-wrap: wrap;
       max-width: 1340px;
       margin: 0 auto;
+    }
+  }
+
+  .pages {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+
+    .page, .current_page {
+      border: 1px solid #9a9a9a;
+      border-radius: 100%;
+      padding: 3px 10px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    .current_page {
+      border: 2px solid black;
+      font-weight: 700;
     }
   }
 }
