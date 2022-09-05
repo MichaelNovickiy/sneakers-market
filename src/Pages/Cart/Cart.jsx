@@ -4,6 +4,7 @@ import CartItems from "./CartItems/CartItems";
 import MarketDataContext from "../../Context/AppContext";
 
 const Cart = () => {
+    console.log('Cart')
 
     const {cartItems} = useContext(MarketDataContext)
 

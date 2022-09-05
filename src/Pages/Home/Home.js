@@ -5,7 +5,8 @@ import axios from "axios";
 import {createPages} from "../../Components/Utils/pageCreator";
 import {Paginator} from "../../Components/Paginator/Paginator";
 
-const Home = () => {
+const Home = React.memo(() => {
+    console.log('Home')
     const [isLoading, setIsLoading] = useState(true)
     const [sneakers, setSneakers] = useState([]);
     const [searchValue, setSearchValue] = useState('')
@@ -53,7 +54,7 @@ const Home = () => {
                 <div className={styles.item}>
                     {isLoading
                         ?
-                        [...Array(8)].map(item => <Item key={item} isLoading={isLoading}/>)
+                        [...Array(8)].map((item, index) => <Item key={index} isLoading={isLoading}/>)
                         :
                         sneakers.filter((item) =>
                             item.title.toLowerCase().includes(searchValue.toLowerCase()),
@@ -70,11 +71,11 @@ const Home = () => {
                     }
                 </div>
             </div>
-           <Paginator pages={pages}
-                      currentPage={currentPage}
-                      setCurrentPage={setCurrentPage} />
+            <Paginator pages={pages}
+                       currentPage={currentPage}
+                       setCurrentPage={setCurrentPage}/>
         </div>
     );
-};
+});
 
 export default Home;

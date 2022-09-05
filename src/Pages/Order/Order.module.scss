@@ -2,6 +2,17 @@
   max-width: 350px;
   margin: 10% auto;
 
+  .orderNumber {
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .buttonBack {
+    margin: 20px auto;
+    display: block;
+  }
+
+
   .form {
     display: flex;
     flex-direction: column;
@@ -23,7 +34,7 @@
     }
   }
 
-  .button{
+  .button {
     margin-top: 20px;
     background-color: #343434;
     color: #eeeeee;

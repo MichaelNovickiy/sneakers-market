@@ -6,8 +6,9 @@ import InsideHeader from "../../Components/InsideHeader/InsideHeader";
 import Button from "../../Components/Button/Button";
 
 const Favorite = () => {
+    console.log('Favorite')
 
-    const {favoriteItems, cleanUpFavorites, onClickBackButton} = useContext(MarketDataContext)
+    const {favoriteItems, cleanUpFavorites} = useContext(MarketDataContext)
 
     return (
         <>
@@ -35,7 +36,7 @@ const Favorite = () => {
                     :
                     <div className={styles.textFavoriteIsClean}>
                         Nothing added yet
-                        <Button onClickBackButton={onClickBackButton} back={true}>
+                        <Button back={true}>
                             ❮ Back
                         </Button>
                     </div>

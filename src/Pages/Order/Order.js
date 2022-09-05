@@ -1,11 +1,11 @@
-import React, {useContext, useRef} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import styles from './Order.module.scss'
 import Button from "../../Components/Button/Button";
 import MarketDataContext from "../../Context/AppContext";
 
 const Order = () => {
-
-    const {addOrder} = useContext(MarketDataContext)
+    console.log('Order')
+    const {addOrder, sendOrder, setSendOrder} = useContext(MarketDataContext)
 
     const firstNameRef = useRef();
     const lastNameRef = useRef();
@@ -22,27 +22,41 @@ const Order = () => {
 
     return (
         <div className={styles.orderBlock}>
-            <form action="" className={styles.form} onSubmit={sendDataOrder}>
-                <div className={styles.inputValues}>
-                    <label htmlFor="firstName">First Name:</label>
-                    <input id="firstName" type="text" ref={firstNameRef}/>
-                </div>
-                <div className={styles.inputValues}>
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input id="lastName" type="text" ref={lastNameRef}/>
-                </div>
-                <div className={styles.inputValues}>
-                    <label htmlFor="mobile">Enter your phone number:</label>
-                    <div className={styles.inputPhone}>
-                        <input type="tel" id="phone" name="phone"
-                               pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
-                               ref={mobileRef}
-                               required/>
-                        <small>Format: 123-45-678-90-12</small>
+            {sendOrder
+                ?
+                <>
+                    <div className={styles.orderNumber}>Your order number: {sendOrder}</div>
+                    <div>Go back to the list of products:
+                        <Button className={styles.buttonBack}
+                            back={true}
+                                onClick={() => setSendOrder(null)}>
+                            ❮ Back
+                        </Button>
                     </div>
-                </div>
-                <Button className={styles.button} type="submit">Send ❯</Button>
-            </form>
+                </>
+                :
+                <form action="" className={styles.form} onSubmit={sendDataOrder}>
+                    <div className={styles.inputValues}>
+                        <label htmlFor="firstName">First Name:</label>
+                        <input id="firstName" type="text" ref={firstNameRef}/>
+                    </div>
+                    <div className={styles.inputValues}>
+                        <label htmlFor="lastName">Last Name:</label>
+                        <input id="lastName" type="text" ref={lastNameRef}/>
+                    </div>
+                    <div className={styles.inputValues}>
+                        <label htmlFor="mobile">Enter your phone number:</label>
+                        <div className={styles.inputPhone}>
+                            <input type="tel" id="phone" name="phone"
+                                   pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+                                   ref={mobileRef}
+                                   required/>
+                            <small>Format: 123-45-678-90-12</small>
+                        </div>
+                    </div>
+                    <Button className={styles.button} type="submit">Send ❯</Button>
+                </form>
+            }
         </div>
     );
 };

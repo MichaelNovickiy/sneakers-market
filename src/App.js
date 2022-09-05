@@ -13,20 +13,20 @@ import ContactUs from "./Pages/ContactUs/ContactUs";
 import Order from "./Pages/Order/Order";
 
 
-function App() {
+const App = React.memo(() => {
+    console.log('App')
     const [cartItems, setCartItems] = useState([])
     const [favoriteItems, setFavoriteItems] = useState([])
     const [bntDisabled, setBntDisabled] = useState(false)
+    const [sendOrder, setSendOrder] = useState(null)
 
     useEffect(() => {
         async function fetchData() {
-            // setIsLoading(true)
             const responseCartItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers')
             setCartItems(responseCartItems.data)
             const responseFavoriteItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items')
             setFavoriteItems(responseFavoriteItems.data)
         }
-
         fetchData()
     }, [])
 
@@ -129,7 +129,8 @@ function App() {
             const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/orders', {
                 firstName, lastName, mobile
             });
-            console.log(response.data.id)
+            setSendOrder(response.data.id)
+            await cleanUpCart(cartItems.length)
         } catch
             (e) {
             alert('Error' + e.message)
@@ -150,7 +151,9 @@ function App() {
         cleanUpCart,
         cleanUpFavorites,
         bntDisabled,
-        addOrder
+        addOrder,
+        sendOrder,
+        setSendOrder
     }
 
 
@@ -170,7 +173,7 @@ function App() {
             </div>
         </ContextMarketData.Provider>
     );
-}
+})
 
 export default App;
 
