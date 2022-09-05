@@ -11,14 +11,15 @@ import Footer from "./Components/Footer/Footer";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import Order from "./Pages/Order/Order";
+import Loading from "./Components/Loading/Loading";
 
 
 const App = React.memo(() => {
-    console.log('App')
     const [cartItems, setCartItems] = useState([])
     const [favoriteItems, setFavoriteItems] = useState([])
-    const [bntDisabled, setBntDisabled] = useState(false)
     const [sendOrder, setSendOrder] = useState(null)
+    const [loading, setLoading] = useState(null)
+
 
     useEffect(() => {
         async function fetchData() {
@@ -27,11 +28,12 @@ const App = React.memo(() => {
             const responseFavoriteItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items')
             setFavoriteItems(responseFavoriteItems.data)
         }
+
         fetchData()
     }, [])
 
     const addItemCart = async ({img, title, price, itemId}) => {
-        setButtonDisable(true)
+        setLoading(true)
         try {
             const item = cartItems.find(item => item.itemId === itemId)
             if (!item) {
@@ -49,10 +51,11 @@ const App = React.memo(() => {
         } catch (e) {
             alert('Error' + e.message)
         }
-        setButtonDisable(false)
+        setLoading(false)
     }
 
     const addFavoriteItem = async ({img, title, price, itemId}) => {
+        setLoading(true)
         try {
             const item = favoriteItems.find(item => item.itemId === itemId)
             if (!item) {
@@ -70,9 +73,11 @@ const App = React.memo(() => {
         } catch (e) {
             alert('Error' + e.message)
         }
+        setLoading(false)
     }
 
     const deleteCartItem = async (cartId) => {
+        setLoading(true)
         try {
             const response =
                 await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${cartId}`);
@@ -82,6 +87,7 @@ const App = React.memo(() => {
         } catch (e) {
             alert('Error' + e.message)
         }
+        setLoading(false)
     }
 
     const isItemAddedCart = (itemId) => {
@@ -97,6 +103,7 @@ const App = React.memo(() => {
     );
 
     const cleanUpCart = async (lengthCart) => {
+        setLoading(true)
         try {
             for (let i = 1; i <= lengthCart; i++) {
                 await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/cartOrderSnikers/${i}`);
@@ -106,9 +113,11 @@ const App = React.memo(() => {
             alert('Something error')
             console.log(e)
         }
+        setLoading(false)
     }
 
     const cleanUpFavorites = async (lengthFavorites) => {
+        setLoading(true)
         try {
             for (let i = 1; i <= lengthFavorites; i++) {
                 await axios.delete(`https://62fe273041165d66bfb99d5a.mockapi.io/favorites_items/${i}`);
@@ -118,13 +127,11 @@ const App = React.memo(() => {
             alert('Something error')
             console.log(e)
         }
-    }
-
-    const setButtonDisable = (value) => {
-        setBntDisabled(value)
+        setLoading(false)
     }
 
     const addOrder = async (firstName, lastName, mobile) => {
+        setLoading(true)
         try {
             const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/orders', {
                 firstName, lastName, mobile
@@ -135,8 +142,8 @@ const App = React.memo(() => {
             (e) {
             alert('Error' + e.message)
         }
+        setLoading(false)
     }
-
 
     const contextValues = {
         addItemCart,
@@ -150,7 +157,6 @@ const App = React.memo(() => {
         totalPrice,
         cleanUpCart,
         cleanUpFavorites,
-        bntDisabled,
         addOrder,
         sendOrder,
         setSendOrder
@@ -159,7 +165,8 @@ const App = React.memo(() => {
 
     return (
         <ContextMarketData.Provider value={contextValues}>
-            <div className="main">
+           <div className="main">
+               {loading && <Loading />}
                 <Header/>
                 <Routes>
                     <Route path={process.env.PUBLIC_URL + '/'} element={<Home/>}/>

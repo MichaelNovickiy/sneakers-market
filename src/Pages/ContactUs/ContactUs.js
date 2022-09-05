@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './ContactUs.module.scss'
 
 const ContactUs = () => {
-    console.log('ContactUs')
     return (
         <div className={styles.contactUsMain}>
             <div>

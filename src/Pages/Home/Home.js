@@ -6,7 +6,6 @@ import {createPages} from "../../Components/Utils/pageCreator";
 import {Paginator} from "../../Components/Paginator/Paginator";
 
 const Home = React.memo(() => {
-    console.log('Home')
     const [isLoading, setIsLoading] = useState(true)
     const [sneakers, setSneakers] = useState([]);
     const [searchValue, setSearchValue] = useState('')

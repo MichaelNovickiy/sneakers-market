@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './AboutUs.module.scss'
 
 const AboutUs = () => {
-    console.log('AboutUs')
     return (
         <div className={styles.aboutUsMain}>
             <div className={styles.title}>Footwear store</div>

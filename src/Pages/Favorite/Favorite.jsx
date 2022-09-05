@@ -6,8 +6,6 @@ import InsideHeader from "../../Components/InsideHeader/InsideHeader";
 import Button from "../../Components/Button/Button";
 
 const Favorite = () => {
-    console.log('Favorite')
-
     const {favoriteItems, cleanUpFavorites} = useContext(MarketDataContext)
 
     return (
