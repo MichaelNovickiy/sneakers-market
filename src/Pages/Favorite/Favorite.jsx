@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 import styles from './Favorite.module.scss'
 import Item from "../Home/Item/Item";
 import MarketDataContext from "../../Context/AppContext";
-import InsideHeader from "../../components/InsideHeader/InsideHeader";
-import Button from "../../components/Button/Button";
+import InsideHeader from "../../Components/InsideHeader/InsideHeader";
+import Button from "../../Components/Button/Button";
 
 const Favorite = () => {
 
@@ -27,7 +27,6 @@ const Favorite = () => {
                                       title={item.title}
                                       price={item.price}
                                       img={item.img}
-                                      buttonAddCart={true}
                                 />
                             )
                             }

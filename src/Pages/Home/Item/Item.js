@@ -1,10 +1,10 @@
 import styles from "./Item.module.scss";
 import React, {useContext} from "react";
 import MarketDataContext from "../../../Context/AppContext";
-import Button from "../../../components/Button/Button";
+import Button from "../../../Components/Button/Button";
 import Loading from "../LoadingContainer/Loading";
 
-const Item = ({itemId, img, title, price,isLoading, buttonAddCart = null}) => {
+const Item = ({itemId, img, title, price, isLoading}) => {
 
     const {
         addItemCart,
@@ -12,8 +12,6 @@ const Item = ({itemId, img, title, price,isLoading, buttonAddCart = null}) => {
         addFavoriteItem,
         isItemAddedFavorite
     } = useContext(MarketDataContext)
-
-    console.log(isLoading)
 
     return (
         <>
@@ -36,18 +34,10 @@ const Item = ({itemId, img, title, price,isLoading, buttonAddCart = null}) => {
                         <div className={styles.titleItem}>{title}</div>
                         <div className={styles.contentPriceWithBtn}>
                             <div>{price}$</div>
-                            {
-                                buttonAddCart
-                                    ?
-                                    <>
-                                        <Button onClick={() => addItemCart({img, title, price, itemId})}
-                                                className={isItemAddedCart(itemId) ? styles.buttonAddItem : null}
-                                        >
-                                            {isItemAddedCart(itemId) ? "Added to Bag" : 'Add to Bag'}
-                                        </Button>
-                                    </>
-                                    : null
-                            }
+                            <Button onClick={() => addItemCart({img, title, price, itemId})}
+                                    className={isItemAddedCart(itemId) ? styles.buttonAddItem : null}>
+                                {isItemAddedCart(itemId) ? "Added to Bag" : 'Add to Bag'}
+                            </Button>
                         </div>
                     </div>
                 </div>

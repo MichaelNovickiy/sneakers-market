@@ -1,10 +1,10 @@
 import React from 'react';
-import './AboutUs.scss'
+import styles from './AboutUs.module.scss'
 
 const AboutUs = () => {
     return (
-        <div className='aboutUsMain'>
-            <div className='title'>Footwear store</div>
+        <div className={styles.aboutUsMain}>
+            <div className={styles.title}>Footwear store</div>
             <div>Official Sneaker Store «RAVE».</div>
             <div>Free shipping.</div>
             <div>For orders and questions, write to

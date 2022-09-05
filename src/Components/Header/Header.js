@@ -23,7 +23,7 @@ const Header = () => {
             </div>
 
             <ul className={styles.rightHeader}>
-                <Link to={process.env.PUBLIC_URL + 'favorite'}>
+                <Link to={process.env.PUBLIC_URL + '/favorite'}>
                     <li>
                         <img src="img/heart.svg" alt="heart"/>
                         <span>{favoriteItems.length}</span>
@@ -31,7 +31,7 @@ const Header = () => {
 
                 </Link>
 
-                <Link to={process.env.PUBLIC_URL + 'cart'}>
+                <Link to={process.env.PUBLIC_URL + '/cart'}>
                     <li>
                         <img src="img/cart.svg" alt="cart"/>
                         <span>{totalPrice}$</span>

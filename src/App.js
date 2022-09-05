@@ -1,5 +1,5 @@
 import './App.scss';
-import Header from "./components/Header/Header";
+import Header from "./Components/Header/Header";
 import Home from "./Pages/Home/Home";
 import {Route, Routes} from "react-router-dom";
 import React, {useEffect, useState} from "react";
@@ -7,9 +7,10 @@ import axios from "axios";
 import ContextMarketData from './Context/AppContext'
 import Cart from "./Pages/Cart/Cart";
 import Favorite from "./Pages/Favorite/Favorite";
-import Footer from "./components/Footer/Footer";
+import Footer from "./Components/Footer/Footer";
 import AboutUs from "./Pages/AboutUs/AboutUs";
 import ContactUs from "./Pages/ContactUs/ContactUs";
+import Order from "./Pages/Order/Order";
 
 
 function App() {
@@ -123,6 +124,19 @@ function App() {
         setBntDisabled(value)
     }
 
+    const addOrder = async (firstName, lastName, mobile) => {
+        try {
+            const response = await axios.post('https://62fe273041165d66bfb99d5a.mockapi.io/orders', {
+                firstName, lastName, mobile
+            });
+            console.log(response.data.id)
+        } catch
+            (e) {
+            alert('Error' + e.message)
+        }
+    }
+
+
     const contextValues = {
         addItemCart,
         cartItems,
@@ -135,7 +149,8 @@ function App() {
         totalPrice,
         cleanUpCart,
         cleanUpFavorites,
-        bntDisabled
+        bntDisabled,
+        addOrder
     }
 
 
@@ -145,10 +160,11 @@ function App() {
                 <Header/>
                 <Routes>
                     <Route path={process.env.PUBLIC_URL + '/'} element={<Home/>}/>
-                    <Route path={process.env.PUBLIC_URL + 'favorite'} exact element={<Favorite/>}/>
-                    <Route path={process.env.PUBLIC_URL + 'cart'} exact element={<Cart/>}/>
-                    <Route path={process.env.PUBLIC_URL + 'about_us'} exact element={<AboutUs/>}/>
-                    <Route path={process.env.PUBLIC_URL + 'contact_us'} exact element={<ContactUs/>}/>
+                    <Route path={process.env.PUBLIC_URL + '/favorite'} exact element={<Favorite/>}/>
+                    <Route path={process.env.PUBLIC_URL + '/cart'} exact element={<Cart/>}/>
+                    <Route path={process.env.PUBLIC_URL + '/about_us'} exact element={<AboutUs/>}/>
+                    <Route path={process.env.PUBLIC_URL + '/contact_us'} exact element={<ContactUs/>}/>
+                    <Route path={process.env.PUBLIC_URL + '/order'} exact element={<Order/>}/>
                 </Routes>
                 <Footer/>
             </div>

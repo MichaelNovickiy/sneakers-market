@@ -1,4 +1,4 @@
-import Button from "../../../components/Button/Button";
+import Button from "../../../Components/Button/Button";
 import React, {useContext} from "react";
 import styles from './CartIsEmpty.module.scss'
 import MarketDataContext from "../../../Context/AppContext";

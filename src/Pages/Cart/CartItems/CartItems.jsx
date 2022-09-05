@@ -2,8 +2,9 @@ import React, {useContext} from "react";
 import MarketDataContext from "../../../Context/AppContext";
 import styles from "./CartItems.module.scss";
 import CartOrderItem from "./CartOrderItem/CartOrderItem";
-import Button from "../../../components/Button/Button";
-import InsideHeader from "../../../components/InsideHeader/InsideHeader";
+import Button from "../../../Components/Button/Button";
+import InsideHeader from "../../../Components/InsideHeader/InsideHeader";
+import {Link} from "react-router-dom";
 
 const CartItems = () => {
 
@@ -41,9 +42,11 @@ const CartItems = () => {
                 <div className={styles.cartBottomText}>
                     Order price: {totalPrice}$
                     <div className={styles.cartButton}>
-                        <Button className={styles.pay}>
-                            Pay now ❯
-                        </Button>
+                        <Link to={process.env.PUBLIC_URL + '/order'}>
+                            <Button className={styles.pay}>
+                                Pay now ❯
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </div>

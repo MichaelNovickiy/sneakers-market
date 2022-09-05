@@ -2,10 +2,13 @@ import React, {useEffect, useState} from 'react';
 import styles from './Home.module.scss';
 import Item from "./Item/Item";
 import axios from "axios";
-import {createPages} from "../../components/Utils/pageCreator";
+import {createPages} from "../../Components/Utils/pageCreator";
+import {Paginator} from "../../Components/Paginator/Paginator";
 
 const Home = () => {
     const [isLoading, setIsLoading] = useState(true)
+    const [sneakers, setSneakers] = useState([]);
+    const [searchValue, setSearchValue] = useState('')
 
     //pagination
     const [totalItems, setTotalItems] = useState(0);
@@ -14,9 +17,6 @@ const Home = () => {
     const pagesCount = Math.ceil(totalItems / limit)
     const pages = []
     createPages(pages, pagesCount, currentPage)
-
-    const [sneakers, setSneakers] = useState([]);
-    const [searchValue, setSearchValue] = useState('')
 
     useEffect(() => {
         async function fetchData(currentPage, limit) {
@@ -64,25 +64,15 @@ const Home = () => {
                                 title={item.title}
                                 price={item.price}
                                 img={item.img}
-                                buttonAddCart={true}
                                 isLoading={isLoading}
                             />
                         )
                     }
                 </div>
             </div>
-            <div className={styles.pages}>
-                {pages.map((page, index) => (
-                    <span className={currentPage === page ? styles.current_page : styles.page}
-                          key={index}
-                          onClick={() => {
-                              setCurrentPage(page)
-                          }}
-                    >
-                        {page}
-                    </span>))
-                }
-            </div>
+           <Paginator pages={pages}
+                      currentPage={currentPage}
+                      setCurrentPage={setCurrentPage} />
         </div>
     );
 };

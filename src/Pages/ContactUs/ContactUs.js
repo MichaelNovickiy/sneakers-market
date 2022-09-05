@@ -1,9 +1,9 @@
 import React from 'react';
-import './ContactUs.scss'
+import styles from './ContactUs.module.scss'
 
 const ContactUs = () => {
     return (
-        <div className='contactUsMain'>
+        <div className={styles.contactUsMain}>
             <div>
                 For orders and questions, write to
                 <a href="https://t.me/+GoQWySGsJy9lYzEy"
