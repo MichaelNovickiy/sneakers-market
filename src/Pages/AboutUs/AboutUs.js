@@ -7,7 +7,7 @@ const AboutUs = () => {
             <div className={styles.title}>Footwear store</div>
             <div>Official Sneaker Store «RAVE».</div>
             <div>Free shipping.</div>
-            <div>For orders and questions, write to
+            <div >For orders and questions, write to
                 <a
                     href="https://t.me/+GoQWySGsJy9lYzEy"
                     target="_blank"

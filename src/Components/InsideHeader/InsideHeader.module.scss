@@ -12,6 +12,9 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     margin: 40px 0;
+    @media (max-width: 610px) {
+      font-size: 24px;
+    }
   }
 
   .cleanText {

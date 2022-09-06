@@ -1,11 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from './Home.module.scss';
 import Item from "./Item/Item";
 import axios from "axios";
 import {createPages} from "../../Components/Utils/pageCreator";
 import {Paginator} from "../../Components/Paginator/Paginator";
+import MarketDataContext from "../../Context/AppContext";
 
 const Home = React.memo(() => {
+
     const [isLoading, setIsLoading] = useState(true)
     const [sneakers, setSneakers] = useState([]);
     const [searchValue, setSearchValue] = useState('')
@@ -19,6 +21,7 @@ const Home = React.memo(() => {
     createPages(pages, pagesCount, currentPage)
 
     useEffect(() => {
+        setIsLoading(true)
         async function fetchData(currentPage, limit) {
             const getAllItems = await axios.get('https://62fe273041165d66bfb99d5a.mockapi.io/sneakers')
             const response = await axios.get(`https://62fe273041165d66bfb99d5a.mockapi.io/sneakers?page=${currentPage}&limit=${limit}`)

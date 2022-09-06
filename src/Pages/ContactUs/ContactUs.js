@@ -4,7 +4,7 @@ import styles from './ContactUs.module.scss'
 const ContactUs = () => {
     return (
         <div className={styles.contactUsMain}>
-            <div>
+            <div className={styles.telegram}>
                 For orders and questions, write to
                 <a href="https://t.me/+GoQWySGsJy9lYzEy"
                    target="_blank"
