@@ -47,10 +47,10 @@ const Order = () => {
                         <label htmlFor="mobile">Enter your phone number:</label>
                         <div className={styles.inputPhone}>
                             <input type="tel" id="phone" name="phone"
-                                   pattern="[0-9]{4} [0-9]{3} [0-9]{2} [0-9]{2}"
+                                   pattern="[0-9]{12}"
                                    ref={mobileRef}
                                    required/>
-                            <small>Format: 8029 123 45 67</small>
+                            <small>Format: 375291234567</small>
                         </div>
                     </div>
                     <Button className={styles.button} type="submit">Send ❯</Button>
